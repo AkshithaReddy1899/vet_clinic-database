@@ -23,3 +23,23 @@ CREATE TABLE animals (
 
 ALTER TABLE animals
 ADD COLUMN species VARCHAR(40);
+
+/* */
+
+CREATE TABLE owners (
+  id INT GENERATED ALWAYS AS IDENTITY,
+  full_name VARCHAR(150),
+  age INT
+);
+
+CREATE TABLE species (
+  id INT GENERATED ALWAYS AS IDENTITY,
+  name VARCHAR(100)
+);
+
+ALTER TABLE animals
+DROP species;
+
+ALTER TABLE animals
+ADD species_id INT,
+ADD owner_id INT;
