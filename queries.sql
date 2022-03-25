@@ -86,3 +86,48 @@ FROM owners
 INNER JOIN animals
 ON animals.owner_id = owners.id GROUP By full_name
 ORDER BY total DESC LIMIT 1;
+
+/* */
+
+SELECT * FROM visits
+JOIN animals
+ON visits.animals_id = animals.id
+WHERE visits.vets_id = 1
+ORDER BY date_of_visit DESC LIMIT 1;
+
+
+SELECT COUNT(animals.name) FROM animals
+INNER JOIN visits ON animals.id = visits.animals_id
+INNER JOIN vets ON visits.vets_id = vets.id
+WHERE vets.id = 3;
+
+SELECT vets.name, species.name FROM vets
+LEFT JOIN specializations ON vets.id = vets_id
+LEFT JOIN species ON species_id = species.id;
+
+SELECT * FROM animals
+INNER JOIN visits ON vets_id = 3
+WHERE animals_id = animals.id AND date_of_visit BETWEEN '2020-04-01' AND '2020-08-30';
+
+SELECT name, COUNT(name) FROM animals
+INNER JOIN visits ON animals.id = visits.animals_id
+GROUP BY name ORDER BY COUNT DESC LIMIT 1;
+
+SELECT name FROM animals
+INNER JOIN visits ON visits.vets_id =2
+WHERE animals_id = animals.id LIMIT 1;
+
+SELECT * FROM animals
+INNER JOIN visits ON animals.id = visits.animals_id
+INNER JOIN vets ON visits.vets_id = vets.id
+ORDER BY visits.date_of_visit DESC LIMIT 1;
+
+SELECT COUNT(*) FROM visits WHERE visits.vet_id = 2;
+
+SELECT species.name, COUNT(*) FROM visits
+LEFT JOIN animalsON animals.id = visits.animals_id
+LEFT JOIN species ON animals.species_id = species.id
+LEFT JOIN vets ON vets.id = visits.vets_id
+WHERE vets_id = 2
+GROUP BY species.name
+ORDER BY COUNT DESC LIMIT 1;
